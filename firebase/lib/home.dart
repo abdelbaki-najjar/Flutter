@@ -12,7 +12,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Stream<QuerySnapshot>? etudiantsStream;
 
-  // دالة لجلب بيانات الطلاب عند بدء التشغيل
   getontheload() async {
     etudiantsStream = await DatabaseMethodes().getallstudents();
     setState(() {});
@@ -24,7 +23,6 @@ class _HomePageState extends State<HomePage> {
     getontheload();
   }
 
-  // دالة لعرض بيانات الطلاب
   Widget allStudentsDetails() {
     return StreamBuilder<QuerySnapshot>(
       stream: etudiantsStream,
@@ -62,19 +60,19 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        // زر التعديل
+
                         IconButton(
                           icon: Icon(Icons.edit, color: Colors.blue),
                           onPressed: () {
-                            // تنفيذ عملية التعديل
+
                             showEditDialog(ds.id, ds["Nom"], ds["Prenom"], ds["Age"], ds["Poste"]);
                           },
                         ),
-                        // زر الحذف
+
                         IconButton(
                           icon: Icon(Icons.delete, color: Colors.red),
                           onPressed: () {
-                            // تنفيذ عملية الحذف
+
                             DatabaseMethodes().deleteEtudiant(ds.id).then((_) {
                               Fluttertoast.showToast(
                                 msg: "Étudiant supprimé avec succès",
@@ -85,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                                 fontSize: 16.0,
                               );
                               setState(() {
-                                // تحديث الصفحة بعد الحذف
+
                                 getontheload();
                               });
                             }).catchError((error) {
@@ -112,7 +110,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // دالة لعرض مربع حوار التعديل
+
   void showEditDialog(String id, String nom, String prenom, String age, String poste) {
     TextEditingController nameController = TextEditingController(text: nom);
     TextEditingController surnameController = TextEditingController(text: prenom);
@@ -149,13 +147,13 @@ class _HomePageState extends State<HomePage> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // إغلاق مربع الحوار
+                Navigator.pop(context); 
               },
               child: Text('Annuler'),
             ),
             ElevatedButton(
               onPressed: () {
-                // تحديث بيانات الطالب
+
                 Map<String, dynamic> updatedInfo = {
                   "Nom": nameController.text,
                   "Prenom": surnameController.text,
@@ -172,10 +170,10 @@ class _HomePageState extends State<HomePage> {
                     fontSize: 16.0,
                   );
                   setState(() {
-                    // تحديث الصفحة بعد التعديل
+
                     getontheload();
                   });
-                  Navigator.pop(context); // إغلاق مربع الحوار بعد التعديل
+                  Navigator.pop(context); 
                 }).catchError((error) {
                   Fluttertoast.showToast(
                     msg: "Erreur de mise à jour : $error",
@@ -205,13 +203,13 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // النص الموجود في الصفحة الرئيسية
+
             Text(
               'Bienvenue sur la plateforme de cours à distance!',
               style: TextStyle(fontSize: 24),
             ),
             SizedBox(height: 20),
-            // زر الانتقال إلى صفحة EtudiantPage
+
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -222,7 +220,7 @@ class _HomePageState extends State<HomePage> {
               child: Text('Plus'),
             ),
             SizedBox(height: 20),
-            // عرض بيانات الطلاب
+
             Expanded(child: allStudentsDetails()),
           ],
         ),

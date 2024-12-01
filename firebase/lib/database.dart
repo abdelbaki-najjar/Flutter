@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseMethodes {
-  // دالة لإضافة طالب إلى Firestore
+  // Add etudiant to Firestore
   Future<void> addEtudiantinfor(Map<String, dynamic> etudiantinfo, String id) async {
     return await FirebaseFirestore.instance
-        .collection("Etudiants") // اسم المجموعة
-        .doc(id) // تحديد المستند باستخدام ID
-        .set(etudiantinfo); // إضافة البيانات
+        .collection("Etudiants") 
+        .doc(id) 
+        .set(etudiantinfo); 
   }
 
   Future<Stream<QuerySnapshot>> getallstudents() async { 

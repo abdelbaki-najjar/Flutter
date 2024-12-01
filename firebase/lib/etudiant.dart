@@ -45,7 +45,7 @@ class _EtudiantPageState extends State<EtudiantPage> {
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () async {
-                String id = randomAlphaNumeric(10); // جيل ID عشوائي
+                String id = randomAlphaNumeric(10); 
                 Map<String, dynamic> etudiantInfo = {
                   "Nom": nameController.text,
                   "Prenom": surnameController.text,
@@ -54,7 +54,6 @@ class _EtudiantPageState extends State<EtudiantPage> {
                   "Poste": statutController.text,
                 };
 
-                // إضافة الطالب إلى Firebase
                 await DatabaseMethodes().addEtudiantinfor(etudiantInfo, id);
                 
                 Fluttertoast.showToast(
@@ -63,7 +62,6 @@ class _EtudiantPageState extends State<EtudiantPage> {
                   textColor: Colors.white,
                 );
 
-                // تنظيف الحقول بعد الإضافة
                 nameController.clear();
                 surnameController.clear();
                 ageController.clear();

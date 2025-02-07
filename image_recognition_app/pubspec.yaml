@@ -1,0 +1,15 @@
+name: image_recognition_app
+description: A Flutter app for image recognition using Google ML Kit.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.19.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  image_picker: ^0.8.7+3
+  google_ml_kit: ^0.12.0
+
+flutter:
+  uses-material-design: true
